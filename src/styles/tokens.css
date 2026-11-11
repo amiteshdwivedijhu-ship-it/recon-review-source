@@ -1,0 +1,27 @@
+/* Design tokens. Brand values were read from saved copies of the public site CSS. */
+:root {
+  --color-primary: #394bf3;
+  --color-primary-hover: #2c3bd0;
+  --color-accent: #8e9bff;
+  --color-tint: #f5f7ff;
+  --color-tint-border: #d5dbff;
+  --color-surface: #fafbfc;
+  --color-surface-2: #f8f9fb;
+  --color-ink: #161525;
+  --color-muted: #5b6072;
+  --color-line: #e3e6ec;
+
+  /* Status colors. Every status also carries a text label. */
+  --status-ok-fg: #0b6b3a;
+  --status-ok-bg: #e8f6ee;
+  --status-ok-line: #a9dcc0;
+  --status-warn-fg: #8a4b00;
+  --status-warn-bg: #fff4dc;
+  --status-warn-line: #f0cf8a;
+  --status-bad-fg: #b42318;
+  --status-bad-bg: #feeceb;
+  --status-bad-line: #f5b5af;
+  --status-unknown-fg: #4b5563;
+  --status-unknown-bg: #f8f9fb;
+  --status-unknown-line: #8b93a1;
+}

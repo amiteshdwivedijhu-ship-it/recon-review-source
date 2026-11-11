@@ -1,0 +1,259 @@
+{
+  "metadata": {
+    "dataset_name": "Ember payment reconciliation sample data",
+    "schema_version": "1.0",
+    "synthetic": true,
+    "currency": "USD",
+    "amount_unit": "integer cents",
+    "snapshot_at": "2030-04-10T12:00:00Z",
+    "notice": "Entirely fictional training data. Contains no patient demographics or production records."
+  },
+  "accounts": [
+    {
+      "account_id": "ACCT-A",
+      "account_name": "Demo Account A",
+      "facility_id": "FAC-A",
+      "facility_name": "Demo Facility A"
+    },
+    {
+      "account_id": "ACCT-B",
+      "account_name": "Demo Account B",
+      "facility_id": "FAC-B",
+      "facility_name": "Demo Facility B"
+    }
+  ],
+  "payers": [
+    {
+      "payer_id": "PAYER-01",
+      "payer_name": "Demo Health One"
+    },
+    {
+      "payer_id": "PAYER-02",
+      "payer_name": "Demo Health Two"
+    }
+  ],
+  "case_index": [
+    {
+      "case_id": "A",
+      "title": "Split payment with posting evidence",
+      "payment_reference": "SYN-PAY-001",
+      "credit_id": null
+    },
+    {
+      "case_id": "B",
+      "title": "Matched amounts with no posting evidence",
+      "payment_reference": "SYN-PAY-002",
+      "credit_id": null
+    },
+    {
+      "case_id": "C",
+      "title": "Deposit mismatch",
+      "payment_reference": "SYN-PAY-003",
+      "credit_id": null
+    },
+    {
+      "case_id": "D",
+      "title": "Credit requiring investigation",
+      "payment_reference": null,
+      "credit_id": "SYN-CREDIT-004"
+    }
+  ],
+  "clearinghouse": {
+    "remittance_records": [
+      {
+        "record_id": "REM-001",
+        "record_type": "parent_payment",
+        "payment_reference": "SYN-PAY-001",
+        "payer_id": "PAYER-01",
+        "payment_date": "2030-04-02",
+        "amount_cents": 48000,
+        "account_id": null,
+        "facility_id": null,
+        "parent_record_id": null
+      },
+      {
+        "record_id": "REM-001-A",
+        "record_type": "account_allocation",
+        "payment_reference": "SYN-PAY-001",
+        "payer_id": "PAYER-01",
+        "payment_date": "2030-04-02",
+        "amount_cents": 18000,
+        "account_id": "ACCT-A",
+        "facility_id": "FAC-A",
+        "parent_record_id": "REM-001"
+      },
+      {
+        "record_id": "REM-001-B",
+        "record_type": "account_allocation",
+        "payment_reference": "SYN-PAY-001",
+        "payer_id": "PAYER-01",
+        "payment_date": "2030-04-02",
+        "amount_cents": 30000,
+        "account_id": "ACCT-B",
+        "facility_id": "FAC-B",
+        "parent_record_id": "REM-001"
+      },
+      {
+        "record_id": "REM-002",
+        "record_type": "single_payment",
+        "payment_reference": "SYN-PAY-002",
+        "payer_id": "PAYER-01",
+        "payment_date": "2030-04-05",
+        "amount_cents": 24000,
+        "account_id": "ACCT-A",
+        "facility_id": "FAC-A",
+        "parent_record_id": null
+      },
+      {
+        "record_id": "REM-003",
+        "record_type": "single_payment",
+        "payment_reference": "SYN-PAY-003",
+        "payer_id": "PAYER-02",
+        "payment_date": "2030-04-07",
+        "amount_cents": 35000,
+        "account_id": "ACCT-A",
+        "facility_id": "FAC-A",
+        "parent_record_id": null
+      }
+    ]
+  },
+  "cash_tracker": {
+    "deposits": [
+      {
+        "deposit_id": "DEP-001",
+        "payment_reference": "SYN-PAY-001",
+        "deposit_date": "2030-04-03",
+        "amount_cents": 48000,
+        "allocations": [
+          {
+            "account_id": "ACCT-A",
+            "facility_id": "FAC-A",
+            "amount_cents": 18000
+          },
+          {
+            "account_id": "ACCT-B",
+            "facility_id": "FAC-B",
+            "amount_cents": 30000
+          }
+        ]
+      },
+      {
+        "deposit_id": "DEP-002",
+        "payment_reference": "SYN-PAY-002",
+        "deposit_date": "2030-04-06",
+        "amount_cents": 24000,
+        "allocations": [
+          {
+            "account_id": "ACCT-A",
+            "facility_id": "FAC-A",
+            "amount_cents": 24000
+          }
+        ]
+      },
+      {
+        "deposit_id": "DEP-003",
+        "payment_reference": "SYN-PAY-003",
+        "deposit_date": "2030-04-08",
+        "amount_cents": 32500,
+        "allocations": [
+          {
+            "account_id": "ACCT-A",
+            "facility_id": "FAC-A",
+            "amount_cents": 32500
+          }
+        ]
+      }
+    ]
+  },
+  "billing_ledger": {
+    "payment_records": [
+      {
+        "record_id": "LED-001-A",
+        "payment_reference": "SYN-PAY-001",
+        "account_id": "ACCT-A",
+        "facility_id": "FAC-A",
+        "payer_id": "PAYER-01",
+        "expected_amount_cents": 18000,
+        "posted_amount_cents": 18000,
+        "posting_status": "posted",
+        "summary_status": "unposted",
+        "posting_transaction_ids": [
+          "POST-001"
+        ],
+        "posting_history_complete": true,
+        "claim_review_status": null
+      },
+      {
+        "record_id": "LED-001-B",
+        "payment_reference": "SYN-PAY-001",
+        "account_id": "ACCT-B",
+        "facility_id": "FAC-B",
+        "payer_id": "PAYER-01",
+        "expected_amount_cents": 30000,
+        "posted_amount_cents": null,
+        "posting_status": "unknown",
+        "summary_status": "unknown",
+        "posting_transaction_ids": null,
+        "posting_history_complete": false,
+        "claim_review_status": null
+      },
+      {
+        "record_id": "LED-002",
+        "payment_reference": "SYN-PAY-002",
+        "account_id": "ACCT-A",
+        "facility_id": "FAC-A",
+        "payer_id": "PAYER-01",
+        "expected_amount_cents": 24000,
+        "posted_amount_cents": 0,
+        "posting_status": "unposted",
+        "summary_status": "unposted",
+        "posting_transaction_ids": [],
+        "posting_history_complete": true,
+        "claim_review_status": null
+      },
+      {
+        "record_id": "LED-003",
+        "payment_reference": "SYN-PAY-003",
+        "account_id": "ACCT-A",
+        "facility_id": "FAC-A",
+        "payer_id": "PAYER-02",
+        "expected_amount_cents": 35000,
+        "posted_amount_cents": 0,
+        "posting_status": "unposted",
+        "summary_status": "unposted",
+        "posting_transaction_ids": [],
+        "posting_history_complete": true,
+        "claim_review_status": null
+      }
+    ],
+    "posting_transactions": [
+      {
+        "transaction_id": "POST-001",
+        "payment_reference": "SYN-PAY-001",
+        "account_id": "ACCT-A",
+        "facility_id": "FAC-A",
+        "payer_id": "PAYER-01",
+        "amount_cents": 18000,
+        "transaction_status": "saved",
+        "posted_by": "DEMO-OPERATOR-01",
+        "posted_at": "2030-04-04T09:00:00Z"
+      }
+    ],
+    "credit_balances": [
+      {
+        "credit_id": "SYN-CREDIT-004",
+        "claim_id": "SYN-CLAIM-004",
+        "account_id": "ACCT-A",
+        "facility_id": "FAC-A",
+        "payer_id": "PAYER-02",
+        "balance_cents": -9000,
+        "detected_date": "2030-04-09",
+        "payment_reference": null,
+        "transaction_history": null,
+        "remittance_details": null,
+        "refund_history": null,
+        "payer_recovery_history": null
+      }
+    ]
+  }
+}

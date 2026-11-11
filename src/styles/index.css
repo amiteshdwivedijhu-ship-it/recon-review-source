@@ -1,0 +1,107 @@
+@import '@fontsource/geist-sans/400.css';
+@import '@fontsource/geist-sans/500.css';
+@import '@fontsource/geist-sans/600.css';
+@import '@fontsource/geist-sans/700.css';
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surface font-sans text-sm text-ink antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* The product requirements page: long-form reading inside the same visual system. */
+@layer components {
+  .prd {
+    @apply text-[15px] leading-relaxed text-ink;
+  }
+  .prd h1 {
+    @apply text-3xl font-semibold tracking-tight outline-none;
+    text-wrap: balance;
+  }
+  .prd h1 + p {
+    @apply mt-3 text-sm text-muted;
+  }
+  .prd h2 {
+    @apply mt-10 border-t border-line pt-6 text-xl font-semibold tracking-tight;
+  }
+  .prd p,
+  .prd ul,
+  .prd ol,
+  .prd pre,
+  .prd .prd-table {
+    @apply mt-3;
+  }
+  .prd p,
+  .prd li {
+    max-width: 72ch;
+  }
+  .prd ul {
+    @apply list-disc space-y-1.5 pl-5;
+  }
+  .prd ol {
+    @apply list-decimal space-y-1.5 pl-5;
+  }
+  .prd li::marker {
+    color: var(--color-muted);
+  }
+  .prd strong {
+    @apply font-semibold;
+  }
+  .prd a {
+    @apply font-medium text-primary underline underline-offset-2;
+  }
+  .prd code {
+    @apply rounded border border-line bg-surface-2 px-1 py-0.5 text-[13px];
+  }
+  .prd pre {
+    @apply overflow-x-auto rounded-lg border border-line bg-surface-2 p-4 text-[13px] leading-6;
+  }
+  .prd pre code {
+    @apply border-0 bg-transparent p-0;
+  }
+  .prd .prd-table {
+    @apply overflow-x-auto rounded-lg border border-line;
+  }
+  .prd table {
+    @apply w-full min-w-[34rem] text-left text-sm;
+  }
+  .prd th {
+    @apply border-b border-line bg-surface-2 px-3 py-2 text-xs font-semibold text-ink;
+  }
+  .prd td {
+    @apply border-b border-line px-3 py-2 align-top tabular-nums;
+  }
+  .prd tr:last-child td {
+    @apply border-b-0;
+  }
+  ::selection {
+    background: var(--color-tint-border);
+  }
+}
+
+@layer components {
+  .prd h2 {
+    scroll-margin-top: 1.5rem;
+    outline: none;
+  }
+}
+
+@layer components {
+  /* The QA record is one wide table. Give its columns room and let the frame scroll on small screens. */
+  .prd-wide table {
+    @apply min-w-[72rem];
+  }
+  .prd-wide p,
+  .prd-wide li {
+    max-width: none;
+  }
+}

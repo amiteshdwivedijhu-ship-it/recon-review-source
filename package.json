@@ -1,0 +1,38 @@
+{
+  "name": "ember-recon",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Payment reconciliation review prototype. Demo data only.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "pretest:e2e": "playwright install chromium",
+    "test:e2e": "playwright test",
+    "screens": "SCREENS=1 playwright test tests/e2e/screens.spec.ts",
+    "package": "bash scripts/package.sh"
+  },
+  "dependencies": {
+    "@fontsource/geist-sans": "^5.3.0",
+    "marked": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^26.6.6",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.6.2",
+    "postcss": "^8.5.32",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.6",
+    "vitest": "^3.2.7"
+  }
+}
